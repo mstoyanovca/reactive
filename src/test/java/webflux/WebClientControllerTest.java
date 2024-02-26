@@ -7,25 +7,36 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import webflux.model.Greeting;
+import webflux.model.User;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class GreetingRouterTest {
+public class WebClientControllerTest {
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
-    public void testHello() {
+    public void findByIdTest() {
         webTestClient
-                .get().uri("/hello")
+                .get()
+                .uri("/user/1")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Greeting.class).value(greeting -> {
-                    assertThat(greeting.getMessage()).isEqualTo("Hello, Spring WebFlux!");
+                .expectBody(User.class).value(user -> {
+                    assertThat(user.getId()).isEqualTo(1L);
                 });
+    }
+
+    @Test
+    public void findAllTest() {
+        webTestClient
+                .get()
+                .uri("/users")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk();
     }
 }
