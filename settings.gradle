@@ -1,4 +1,4 @@
 rootProject.name = 'reactive'
-include 'spring_boot_webflux'
-include 'spring_boot_mvc'
+include 'spring_webflux'
+include 'spring_mvc'
 
