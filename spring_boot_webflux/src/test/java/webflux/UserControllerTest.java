@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class WebClientControllerTest {
+public class UserControllerTest {
     @Autowired
-    private WebTestClient webTestClient;
+    private WebTestClient client;
 
     @Test
     public void findByIdTest() {
-        webTestClient
+        client
                 .get()
                 .uri("/user/1")
                 .accept(MediaType.APPLICATION_JSON)
@@ -32,7 +32,7 @@ public class WebClientControllerTest {
 
     @Test
     public void findAllTest() {
-        webTestClient
+        client
                 .get()
                 .uri("/users")
                 .accept(MediaType.APPLICATION_JSON)
