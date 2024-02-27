@@ -23,6 +23,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '7.5'
+    distributionUrl = distributionUrl.replace("bin", "all")
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
