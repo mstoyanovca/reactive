@@ -1,0 +1,4 @@
+GET     /                           controller.UserController.home()
+GET     /home                       controller.UserController.home()
+GET     /user/:id                   controller.UserController.findById(id: Long)
+GET     /test-user                  controller.WsClientController.findByIdTest()
